@@ -33,17 +33,18 @@
   gap: 0.4rem;
 }
 
-.field label {
+.field label,
+.field-label {
   font-size: 0.9rem;
   font-weight: 700;
   color: #3a342c;
 }
 
-.title-input {
+.title-input,
+.column-input {
   width: 100%;
   font: inherit;
   font-size: 1.1rem;
-  font-weight: 700;
   padding: 0.65rem 0.85rem;
   border: 1px solid #d9d2c5;
   border-radius: 4px;
@@ -52,11 +53,55 @@
   box-sizing: border-box;
 }
 
+.title-input {
+  font-weight: 700;
+}
+
 .title-input:focus,
+.column-input:focus,
 .names-textarea:focus {
   outline: 2px solid #2c2a26;
   outline-offset: 1px;
   border-color: #2c2a26;
+}
+
+.column-fields {
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.column-fields legend {
+  padding: 0;
+  margin: 0 0 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #3a342c;
+}
+
+.mark-column-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.mark-column-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+
+.mark-column-num {
+  width: 1.25rem;
+  flex-shrink: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #7a7165;
+  font-size: 0.9rem;
 }
 
 .names-textarea {

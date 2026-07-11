@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { CHECK_IN_COLUMNS, type Participant } from '../../data/names';
+import {
+  CHECK_IN_COLUMNS,
+  DEFAULT_NAME_COLUMN_LABEL,
+  DEFAULT_PHONE_COLUMN_LABEL,
+  type Participant,
+} from '../../data/names';
 import {
   A4_HEIGHT_MM,
   A4_WIDTH_MM,
@@ -13,14 +18,17 @@ const a4PageStyle = {
 } as CSSProperties;
 
 type CheckInSheetProps = {
-  title: string
-  participants: Participant[]
-  extraBlankPages?: number
-  editable?: boolean
-  onInsertRow?: (index: number) => void
-  onRemoveRow?: (index: number) => void
-  onRenameRow?: (index: number, name: string) => void
-}
+  title: string;
+  participants: Participant[];
+  extraBlankPages?: number;
+  nameColumnLabel?: string;
+  phoneColumnLabel?: string;
+  markColumnLabels?: string[];
+  editable?: boolean;
+  onInsertRow?: (index: number) => void;
+  onRemoveRow?: (index: number) => void;
+  onRenameRow?: (index: number, name: string) => void;
+};
 
 function emptyPage(rowsPerPage: number): (Participant | null)[] {
   return Array.from({ length: rowsPerPage }, () => null);
@@ -55,12 +63,17 @@ export function CheckInSheet({
   title,
   participants,
   extraBlankPages = 0,
+  nameColumnLabel = DEFAULT_NAME_COLUMN_LABEL,
+  phoneColumnLabel = DEFAULT_PHONE_COLUMN_LABEL,
+  markColumnLabels,
   editable = false,
   onInsertRow,
   onRemoveRow,
   onRenameRow,
 }: CheckInSheetProps) {
   const pages = chunkPages(participants, ROWS_PER_PAGE, extraBlankPages);
+  const markLabels =
+    markColumnLabels ?? Array.from({ length: CHECK_IN_COLUMNS }, () => '');
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [draft, setDraft] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -103,13 +116,15 @@ export function CheckInSheet({
               <tr>
                 <th className="col-index" scope="col" />
                 <th className="col-name" scope="col">
-                  姓名
+                  {nameColumnLabel}
                 </th>
                 <th className="col-phone" scope="col">
-                  電話/手機
+                  {phoneColumnLabel}
                 </th>
-                {Array.from({ length: CHECK_IN_COLUMNS }, (_, i) => (
-                  <th className="col-mark" scope="col" key={i} />
+                {markLabels.map((label, i) => (
+                  <th className="col-mark" scope="col" key={i}>
+                    {label}
+                  </th>
                 ))}
               </tr>
             </thead>
@@ -203,7 +218,7 @@ export function CheckInSheet({
                       )}
                     </td>
                     <td className="col-phone" />
-                    {Array.from({ length: CHECK_IN_COLUMNS }, (_, i) => (
+                    {markLabels.map((_, i) => (
                       <td className="col-mark" key={i} />
                     ))}
                   </tr>

@@ -9,6 +9,7 @@ import './App.css';
 function App() {
   const [tab, setTab] = useState<AppTab>('sheet');
   const sheet = useSheetState();
+  const { data } = sheet;
 
   return (
     <div className="app">
@@ -20,8 +21,10 @@ function App() {
             <SheetToolbar
               sortMode={sheet.sortMode}
               onSortModeChange={sheet.setSortMode}
-              extraBlankPages={sheet.extraBlankPages}
-              onExtraBlankPagesChange={sheet.setExtraBlankPages}
+              extraBlankPages={data.extraBlankPages}
+              onExtraBlankPagesChange={(extraBlankPages) =>
+                sheet.updateData({ extraBlankPages })
+              }
             />
             <p className="row-hint">
               Hover the number for + / ×, or the name to edit. Numbers update
@@ -33,9 +36,12 @@ function App() {
 
       {tab === 'sheet' ? (
         <CheckInSheet
-          title={sheet.title}
+          title={data.title}
           participants={sheet.participants}
-          extraBlankPages={sheet.extraBlankPages}
+          extraBlankPages={data.extraBlankPages}
+          nameColumnLabel={data.nameColumnLabel}
+          phoneColumnLabel={data.phoneColumnLabel}
+          markColumnLabels={data.markColumnLabels}
           editable
           onInsertRow={sheet.insertRow}
           onRemoveRow={sheet.removeRow}
@@ -55,9 +61,12 @@ function App() {
       {tab === 'sheet-data' && (
         <div className="print-only">
           <CheckInSheet
-            title={sheet.title}
+            title={data.title}
             participants={sheet.participants}
-            extraBlankPages={sheet.extraBlankPages}
+            extraBlankPages={data.extraBlankPages}
+            nameColumnLabel={data.nameColumnLabel}
+            phoneColumnLabel={data.phoneColumnLabel}
+            markColumnLabels={data.markColumnLabels}
           />
         </div>
       )}

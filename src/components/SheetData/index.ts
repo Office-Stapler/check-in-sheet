@@ -1,1 +1,1 @@
-export { SheetData } from './SheetData';
+export { SheetDataEditor as SheetData } from './SheetData';

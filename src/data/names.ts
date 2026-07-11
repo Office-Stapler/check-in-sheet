@@ -26,3 +26,6 @@ export const DEFAULT_SHEET_TITLE = 'Sheet title';
 /** Blank session columns for handwritten check-in marks. */
 export const CHECK_IN_COLUMNS = 7;
 
+export const DEFAULT_NAME_COLUMN_LABEL = 'Name';
+export const DEFAULT_PHONE_COLUMN_LABEL = 'Phone Number';
+

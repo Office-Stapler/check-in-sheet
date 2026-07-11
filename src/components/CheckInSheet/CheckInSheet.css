@@ -53,8 +53,18 @@
 
 .check-in-table thead th {
   font-weight: 700;
-  text-align: left;
+  text-align: center;
   height: 8mm;
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.col-name,
+.check-in-table thead .col-name,
+.check-in-table thead .col-phone {
+  text-align: left;
 }
 
 .col-index {
