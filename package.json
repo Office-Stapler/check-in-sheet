@@ -8,9 +8,12 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://office-stapler.github.io/check-in-sheet",
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
