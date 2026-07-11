@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useRef } from 'react';
 import { namesTextToParticipants } from '../../data/names';
 import type { SheetState } from '../../hooks/useSheetState';
 import './SheetData.css';
@@ -9,19 +9,53 @@ type SheetDataProps = {
 
 /** Edit persisted sheet fields (`sheet.data`). Add fields in `SheetData` type. */
 export function SheetDataEditor({ sheet }: SheetDataProps) {
-  const { data, updateData, setMarkColumnLabel } = sheet;
+  const { data, updateData, exportData, importData, resetData } = sheet;
   const titleId = useId();
   const nameColId = useId();
   const phoneColId = useId();
   const namesId = useId();
-  const markFieldsId = useId();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const count = namesTextToParticipants(data.namesText).length;
 
   return (
     <section className="names-editor" aria-label="Sheet data">
       <div className="names-editor-header">
-        <h2>Sheet data</h2>
-        <p>Set the title, column headers, then list one name per line.</p>
+        <div className="names-editor-heading">
+          <h2>Sheet data</h2>
+          <p>Set the title, column headers, then list one name per line.</p>
+        </div>
+        <div className="sheet-data-actions">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json,.json"
+            className="visually-hidden"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                void importData(file);
+              }
+              e.target.value = '';
+            }}
+          />
+          <button
+            type="button"
+            className="sheet-data-btn"
+            onClick={() => fileInputRef.current?.click()}
+          >
+            Import
+          </button>
+          <button type="button" className="sheet-data-btn" onClick={exportData}>
+            Export
+          </button>
+          <button
+            type="button"
+            className="sheet-data-btn sheet-data-btn-danger"
+            onClick={resetData}
+          >
+            Reset
+          </button>
+        </div>
       </div>
 
       <div className="field">
@@ -59,31 +93,6 @@ export function SheetDataEditor({ sheet }: SheetDataProps) {
             onChange={(e) => updateData({ phoneColumnLabel: e.target.value })}
             spellCheck={false}
           />
-        </div>
-        <div className="field">
-          <span className="field-label" id={markFieldsId}>
-            Mark columns
-          </span>
-          <div
-            className="mark-column-list"
-            role="group"
-            aria-labelledby={markFieldsId}
-          >
-            {data.markColumnLabels.map((label, index) => (
-              <label key={index} className="mark-column-item">
-                <span className="mark-column-num">{index + 1}</span>
-                <input
-                  className="column-input"
-                  type="text"
-                  value={label}
-                  onChange={(e) => setMarkColumnLabel(index, e.target.value)}
-                  spellCheck={false}
-                  placeholder="Optional"
-                  aria-label={`Mark column ${index + 1}`}
-                />
-              </label>
-            ))}
-          </div>
         </div>
       </fieldset>
 

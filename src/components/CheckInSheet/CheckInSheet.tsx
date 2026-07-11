@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import classNames from 'classnames';
 import {
   CHECK_IN_COLUMNS,
   DEFAULT_NAME_COLUMN_LABEL,
@@ -23,7 +24,6 @@ type CheckInSheetProps = {
   extraBlankPages?: number;
   nameColumnLabel?: string;
   phoneColumnLabel?: string;
-  markColumnLabels?: string[];
   editable?: boolean;
   onInsertRow?: (index: number) => void;
   onRemoveRow?: (index: number) => void;
@@ -69,15 +69,12 @@ export function CheckInSheet({
   extraBlankPages = 0,
   nameColumnLabel = DEFAULT_NAME_COLUMN_LABEL,
   phoneColumnLabel = DEFAULT_PHONE_COLUMN_LABEL,
-  markColumnLabels,
   editable = false,
   onInsertRow,
   onRemoveRow,
   onRenameRow,
 }: CheckInSheetProps) {
   const pages = chunkPages(participants, ROWS_PER_PAGE, extraBlankPages);
-  const markLabels =
-    markColumnLabels ?? Array.from({ length: CHECK_IN_COLUMNS }, () => '');
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [draft, setDraft] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -100,7 +97,9 @@ export function CheckInSheet({
   }
 
   function saveEdit() {
-    if (editingIndex == null) { return; }
+    if (editingIndex == null) {
+      return;
+    }
     onRenameRow?.(editingIndex, draft.trim());
     cancelEdit();
   }
@@ -125,10 +124,8 @@ export function CheckInSheet({
                 <th className="col-phone" scope="col">
                   {phoneColumnLabel}
                 </th>
-                {markLabels.map((label, i) => (
-                  <th className="col-mark" scope="col" key={i}>
-                    {label}
-                  </th>
+                {Array.from({ length: CHECK_IN_COLUMNS }, (_, i) => (
+                  <th className="col-mark" scope="col" key={i} />
                 ))}
               </tr>
             </thead>
@@ -143,9 +140,9 @@ export function CheckInSheet({
                 return (
                   <tr key={person?.id ?? `empty-${pageIndex}-${rowIndex}`}>
                     <td
-                      className={
-                        showControls ? 'col-index col-index-editable' : 'col-index'
-                      }
+                      className={classNames('col-index', {
+                        'col-index-editable': showControls,
+                      })}
                     >
                       <strong>{number}</strong>
                       {showControls && (
@@ -174,11 +171,10 @@ export function CheckInSheet({
                       )}
                     </td>
                     <td
-                      className={
-                        showControls
-                          ? `col-name col-name-editable${isEditing ? ' is-editing' : ''}`
-                          : 'col-name'
-                      }
+                      className={classNames('col-name', {
+                        'col-name-editable': showControls,
+                        'is-editing': isEditing,
+                      })}
                     >
                       {isEditing ? (
                         <input
@@ -203,7 +199,11 @@ export function CheckInSheet({
                         <>
                           <span className="name-text">{person?.name ?? ''}</span>
                           {showControls && (
-                            <div className="cell-actions name-actions no-print">
+                            <div className={classNames({
+                              'cell-actions': true,
+                              'name-actions': true,
+                              "no-print": true,
+                            })}>
                               <button
                                 type="button"
                                 className="row-btn row-btn-edit"
@@ -222,7 +222,7 @@ export function CheckInSheet({
                       )}
                     </td>
                     <td className="col-phone" />
-                    {markLabels.map((_, i) => (
+                    {Array.from({ length: CHECK_IN_COLUMNS }, (_, i) => (
                       <td className="col-mark" key={i} />
                     ))}
                   </tr>
@@ -230,6 +230,18 @@ export function CheckInSheet({
               })}
             </tbody>
           </table>
+
+          {editable && pageIndex === pages.length - 1 && (
+            <div className="add-row-bar no-print">
+              <button
+                type="button"
+                className="row-btn row-btn-wide"
+                onClick={() => onInsertRow?.(participants.length)}
+              >
+                + Add blank row
+              </button>
+            </div>
+          )}
 
           <footer className="sheet-footer">
             <span className="page-number">{pageIndex + 1}</span>

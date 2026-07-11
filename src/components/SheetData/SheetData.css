@@ -14,17 +14,62 @@
     'SimSun', Georgia, serif;
 }
 
-.names-editor-header h2 {
+.names-editor-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+}
+
+.names-editor-heading h2 {
   margin: 0 0 0.35rem;
   font-size: 1.35rem;
   font-weight: 700;
 }
 
-.names-editor-header p {
+.names-editor-heading p {
   margin: 0;
   font-size: 0.9rem;
   color: #5c5348;
   line-height: 1.45;
+}
+
+.sheet-data-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.sheet-data-btn {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #b8ae9e;
+  border-radius: 4px;
+  background: #fff;
+  color: #1a1612;
+  cursor: pointer;
+}
+
+.sheet-data-btn:hover {
+  background: #f7f4ef;
+  border-color: #2c2a26;
+}
+
+.sheet-data-btn:focus-visible {
+  outline: 2px solid #2c2a26;
+  outline-offset: 2px;
+}
+
+.sheet-data-btn-danger {
+  color: #8b3a2f;
+  border-color: #c9b8b4;
+}
+
+.sheet-data-btn-danger:hover {
+  background: #f8ece9;
+  border-color: #8b3a2f;
 }
 
 .field {
@@ -80,28 +125,6 @@
   font-size: 0.9rem;
   font-weight: 700;
   color: #3a342c;
-}
-
-.mark-column-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.mark-column-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 400;
-}
-
-.mark-column-num {
-  width: 1.25rem;
-  flex-shrink: 0;
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  color: #7a7165;
-  font-size: 0.9rem;
 }
 
 .names-textarea {

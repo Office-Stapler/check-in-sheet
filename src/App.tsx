@@ -41,7 +41,6 @@ function App() {
           extraBlankPages={data.extraBlankPages}
           nameColumnLabel={data.nameColumnLabel}
           phoneColumnLabel={data.phoneColumnLabel}
-          markColumnLabels={data.markColumnLabels}
           editable
           onInsertRow={sheet.insertRow}
           onRemoveRow={sheet.removeRow}
@@ -66,7 +65,6 @@ function App() {
             extraBlankPages={data.extraBlankPages}
             nameColumnLabel={data.nameColumnLabel}
             phoneColumnLabel={data.phoneColumnLabel}
-            markColumnLabels={data.markColumnLabels}
           />
         </div>
       )}

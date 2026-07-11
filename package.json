@@ -13,7 +13,7 @@
   },
   "homepage": "https://office-stapler.github.io/check-in-sheet",
   "dependencies": {
-    "gh-pages": "^6.3.0",
+    "classnames": "^2.5.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
