@@ -231,18 +231,6 @@ export function CheckInSheet({
             </tbody>
           </table>
 
-          {editable && pageIndex === pages.length - 1 && (
-            <div className="add-row-bar no-print">
-              <button
-                type="button"
-                className="row-btn row-btn-wide"
-                onClick={() => onInsertRow?.(participants.length)}
-              >
-                + Add blank row
-              </button>
-            </div>
-          )}
-
           <footer className="sheet-footer">
             <span className="page-number">{pageIndex + 1}</span>
           </footer>
