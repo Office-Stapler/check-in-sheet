@@ -97,14 +97,14 @@ export function SheetDataEditor({ sheet }: SheetDataProps) {
       </fieldset>
 
       <div className="field">
-        <label htmlFor={namesId}>Names</label>
+        <label htmlFor={namesId}>Values</label>
         <textarea
           id={namesId}
           className="names-textarea"
           value={data.namesText}
           onChange={(e) => updateData({ namesText: e.target.value })}
           spellCheck={false}
-          placeholder={'劉行圓\n林儷樺\n陳鶯嬌 Jolly'}
+          placeholder={'Some\nValues\nHere'}
         />
         <p className="names-count">{count} people</p>
       </div>
