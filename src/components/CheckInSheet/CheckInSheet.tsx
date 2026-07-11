@@ -100,7 +100,7 @@ export function CheckInSheet({
   }
 
   function saveEdit() {
-    if (editingIndex == null) {return;}
+    if (editingIndex == null) { return; }
     onRenameRow?.(editingIndex, draft.trim());
     cancelEdit();
   }
@@ -230,18 +230,6 @@ export function CheckInSheet({
               })}
             </tbody>
           </table>
-
-          {editable && pageIndex === pages.length - 1 && (
-            <div className="add-row-bar no-print">
-              <button
-                type="button"
-                className="row-btn row-btn-wide"
-                onClick={() => onInsertRow?.(participants.length)}
-              >
-                + Add blank row
-              </button>
-            </div>
-          )}
 
           <footer className="sheet-footer">
             <span className="page-number">{pageIndex + 1}</span>
