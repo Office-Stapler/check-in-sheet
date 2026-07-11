@@ -44,15 +44,19 @@ function chunkPages(
   for (let i = 0; i < participants.length; i += rowsPerPage) {
     const slice = participants.slice(i, i + rowsPerPage);
     const padded: (Participant | null)[] = [...slice];
-    while (padded.length < rowsPerPage) {padded.push(null);}
+    while (padded.length < rowsPerPage) {
+      padded.push(null);
+    }
     pages.push(padded);
   }
 
-  for (let i = 0; i < extraBlankPages; i++) {
+  // Empty roster still gets one base sheet so the preview isn't blank;
+  // extraBlankPages are always appended after that.
+  if (pages.length === 0) {
     pages.push(emptyPage(rowsPerPage));
   }
 
-  if (pages.length === 0) {
+  for (let i = 0; i < extraBlankPages; i++) {
     pages.push(emptyPage(rowsPerPage));
   }
 
