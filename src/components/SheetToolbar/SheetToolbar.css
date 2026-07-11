@@ -1,0 +1,72 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 0.75rem 1rem;
+  background: #f7f4ef;
+  border: 1px solid #d9d2c5;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.toolbar-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #3a342c;
+}
+
+.toolbar-group select,
+.extra-pages-input {
+  font: inherit;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #b8ae9e;
+  border-radius: 4px;
+  background: #fff;
+  color: #1a1612;
+}
+
+.extra-pages-input {
+  width: 4rem;
+}
+
+.print-btn {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.45rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #2c2a26;
+  background: #2c2a26;
+  color: #faf8f4;
+}
+
+.print-btn:hover {
+  background: #1a1815;
+}
+
+.print-btn:focus-visible {
+  outline: 2px solid #2c2a26;
+  outline-offset: 2px;
+}
+
+.row-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #5c5348;
+  line-height: 1.4;
+}
+
+.row-hint strong {
+  color: #1a1612;
+}

@@ -1,0 +1,87 @@
+.names-editor {
+  width: min(210mm, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem 1.1rem 1.5rem;
+  background: #fff;
+  border: 1px solid #d9d2c5;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #1a1612;
+  font-family:
+    'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', 'MingLiU', 'PMingLiU',
+    'SimSun', Georgia, serif;
+}
+
+.names-editor-header h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.names-editor-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #5c5348;
+  line-height: 1.45;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #3a342c;
+}
+
+.title-input {
+  width: 100%;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #d9d2c5;
+  border-radius: 4px;
+  color: #1a1612;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.title-input:focus,
+.names-textarea:focus {
+  outline: 2px solid #2c2a26;
+  outline-offset: 1px;
+  border-color: #2c2a26;
+}
+
+.names-textarea {
+  width: 100%;
+  min-height: 24rem;
+  font: inherit;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  padding: 0.85rem 1rem;
+  border: 1px solid #d9d2c5;
+  border-radius: 4px;
+  resize: vertical;
+  color: #1a1612;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.names-count {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #7a7165;
+}
+
+@media print {
+  .names-editor {
+    display: none !important;
+  }
+}

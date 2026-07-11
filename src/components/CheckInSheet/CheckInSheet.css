@@ -1,0 +1,288 @@
+.sheets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.sheet {
+  width: var(--a4-width);
+  min-height: var(--a4-height);
+  max-width: 100%;
+  padding: 14mm 12mm 12mm;
+  box-sizing: border-box;
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  font-family:
+    'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', 'MingLiU', 'PMingLiU',
+    'SimSun', serif;
+}
+
+.sheet-title {
+  margin: 0 0 10mm;
+  text-align: center;
+  font-size: 22pt;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: #111;
+}
+
+.check-in-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  flex: 1;
+  font-size: 12pt;
+  overflow: visible;
+}
+
+.check-in-table th,
+.check-in-table td {
+  border: 1px solid #111;
+  padding: 0.2em 0.35em;
+  vertical-align: middle;
+  height: 9.2mm;
+}
+
+.check-in-table thead th {
+  font-weight: 700;
+  text-align: left;
+  height: 8mm;
+}
+
+.col-index {
+  width: 8%;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+}
+
+.col-name {
+  width: 28%;
+  text-align: left;
+  word-break: break-word;
+  position: relative;
+}
+
+.col-phone {
+  width: 22%;
+  text-align: left;
+}
+
+.col-mark {
+  width: 6%;
+}
+
+.col-index-editable:hover,
+.col-name-editable:hover,
+.col-name-editable.is-editing {
+  z-index: 5;
+}
+
+.cell-actions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+.col-index-editable:hover .row-actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.name-actions {
+  justify-content: flex-end;
+  padding-right: 0.25rem;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.92) 35%,
+    #fff 55%
+  );
+}
+
+.col-name-editable:hover .name-actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (hover: none) {
+  .col-index-editable:focus-within .row-actions,
+  .col-name-editable:focus-within .name-actions {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.name-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name-edit-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: inherit;
+  line-height: 1.2;
+  padding: 0.1em 0.25em;
+  border: 1px solid #2c2a26;
+  border-radius: 2px;
+  background: #fff;
+  color: #111;
+}
+
+.name-edit-input:focus {
+  outline: 2px solid #2c2a26;
+  outline-offset: 1px;
+}
+
+.row-btn {
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: 1px solid #b8ae9e;
+  border-radius: 3px;
+  background: #f7f4ef;
+  color: #3a342c;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.row-btn-edit {
+  width: auto;
+  padding: 0 0.4rem;
+  font-size: 0.7rem;
+}
+
+.row-btn:hover {
+  background: #ebe4d8;
+  border-color: #2c2a26;
+}
+
+.row-btn:focus-visible {
+  outline: 2px solid #2c2a26;
+  outline-offset: 1px;
+}
+
+.row-remove {
+  color: #8b3a2f;
+}
+
+.row-btn-wide {
+  width: auto;
+  height: auto;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.add-row-bar {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 0;
+}
+
+.sheet-footer {
+  margin-top: auto;
+  padding-top: 6mm;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-number {
+  font-size: 11pt;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+@media (max-width: 860px) {
+  .sheet {
+    width: 100%;
+    min-height: auto;
+    padding: 1.25rem 0.85rem 1.5rem;
+  }
+
+  .sheet-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .check-in-table {
+    font-size: 0.8rem;
+  }
+
+  .check-in-table th,
+  .check-in-table td {
+    height: auto;
+    min-height: 2rem;
+    padding: 0.35em 0.25em;
+  }
+}
+
+/*
+  Print-only overrides: screen styles use card-like sheets (shadow, border, gaps).
+  When the browser prints / saves PDF, lock each .sheet to A4 (--a4-width ×
+  --a4-height from A4_WIDTH_MM / A4_HEIGHT_MM), drop chrome, and force a page
+  break after every sheet except the last. Chunking uses ROWS_PER_PAGE so each
+  page fills that A4 frame. print-color-adjust keeps table borders; .add-row-bar
+  stays screen-only.
+*/
+@media print {
+  .sheets {
+    gap: 0;
+  }
+
+  .sheet {
+    width: var(--a4-width);
+    height: var(--a4-height);
+    min-height: var(--a4-height);
+    max-width: none;
+    margin: 0;
+    padding: 14mm 12mm 12mm;
+    border: none;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .sheet:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .check-in-table th,
+  .check-in-table td {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .add-row-bar {
+    display: none !important;
+  }
+}

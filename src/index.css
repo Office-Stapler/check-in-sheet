@@ -1,0 +1,37 @@
+:root {
+  color-scheme: light;
+  font-family:
+    'Noto Serif TC', 'Source Han Serif TC', 'Songti TC', 'MingLiU', 'PMingLiU',
+    'SimSun', Georgia, serif;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #1a1612;
+  background: #e8e2d8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+@media print {
+  :root,
+  body,
+  #root {
+    background: #fff;
+  }
+}
