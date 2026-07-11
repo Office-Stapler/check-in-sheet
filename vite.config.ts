@@ -4,7 +4,7 @@ import babel from '@rolldown/plugin-babel';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/check-in-sheet/',
+  base: 'https://office-stapler.github.io/check-in-sheet/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
