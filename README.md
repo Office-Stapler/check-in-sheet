@@ -4,6 +4,8 @@ A small React app for building printable A4 sign-in sheets (e.g. event or assemb
 
 Edit the title and roster, sort names (Chinese first, English first, or original order), tweak blank pages and rows on the sheet, then print or save as PDF from the browser.
 
+**Live:** [office-stapler.github.io/check-in-sheet](https://office-stapler.github.io/check-in-sheet/)
+
 ## Features
 
 - **Sheet** — A4 preview of the check-in table (name, phone column, mark columns)
@@ -28,6 +30,17 @@ yarn dev
 | `yarn preview`| Preview the production build |
 | `yarn lint`   | Run ESLint               |
 | `yarn lint:fix` | Auto-fix lint issues |
+
+## Deploy (GitHub Pages)
+
+Pushes to `main` build and deploy via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+One-time repo setup:
+
+1. **Settings → Pages → Build and deployment → Source:** GitHub Actions
+2. Push to `main` (or run the **Deploy to GitHub Pages** workflow manually)
+
+The Vite `base` is `/check-in-sheet/` to match this repository name.
 
 ## Stack
 
